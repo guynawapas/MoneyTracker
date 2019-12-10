@@ -10,8 +10,10 @@ export class UserService {
 
   constructor( private router: Router ) {
     firebase.auth().onAuthStateChanged((user: firebase.User) => {
-      if (user) {
+      
+      if (this.signedIn) {
         console.log('User is logged in');
+        this.signedIn=true;
         this.router.navigateByUrl('/list');
       } else {
         console.log('User is not logged in');
