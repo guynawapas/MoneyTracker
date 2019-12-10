@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="content-background" no-bounce>
+  <form (submit)="doSignup()" class="form-div">
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input type="email" [(ngModel)]="account.email" name="email"> </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Password</ion-label>
+        <ion-input type="password" [(ngModel)]="account.password1" name="password1"> </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Password (confirm)</ion-label>
+        <ion-input type="password" [(ngModel)]="account.password2" name="password2"> </ion-input>
+      </ion-item>
+
+      <ion-button expand="full" type="submit">Submit</ion-button>
+    </ion-list>
+
+  </form>
+  <div class="login-div" (click)="gotoLogin()">Already have an account? Tap here to login.</div>
+</ion-content>
