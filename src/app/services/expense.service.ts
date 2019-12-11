@@ -22,7 +22,16 @@ export class ExpenseService {
     return firebase.database().ref('expenses/').push(expense);
   }
 
+  async reloadData() {
+    await this.ref.on('value', resp => {
+      this.expenses = [];
+      this.expenses = snapshotToArray(resp);
+      console.log(this.expenses);
+    });
+  }
+
   getExpense() {
+    
     // console.log(firebase.auth().currentUser.email)
     if(firebase.auth() === null) {
       return [];

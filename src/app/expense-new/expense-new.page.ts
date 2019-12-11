@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./expense-new.page.scss'],
 })
 export class ExpenseNewPage implements OnInit {
-  newExpense = { type: '', description: '', cost: '' };
+  
+  newExpense = { type: '', description: '', cost: '',date:new Date().toISOString()};
 
   constructor( private expenseService: ExpenseService,
                private router: Router ) { }
@@ -31,5 +32,5 @@ export class ExpenseNewPage implements OnInit {
   inputCheck() {
     return (this.newExpense.description == '');
   }
-
+ 
 }

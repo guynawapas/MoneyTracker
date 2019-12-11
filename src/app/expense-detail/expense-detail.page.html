@@ -9,8 +9,10 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class='exp'>
   <!--<h4>{{ expense.type }}: {{ expense.user }}</h4>-->
-  <div>${{ expense.cost }}</div>
-  <div>{{ expense.description }}</div>
+  <ion-item color='red'>Expense: {{ expense.cost }}</ion-item>
+  <ion-item color='yellowish'>Description: {{ expense.description }}</ion-item>
+  <ion-item color ='purple'>Type: {{ expense.type }}</ion-item>
+  <ion-item color ='medium'>Date: {{expense.date}}</ion-item>
 </ion-content>

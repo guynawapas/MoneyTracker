@@ -33,6 +33,11 @@
         <ion-input type="number" [(ngModel)]="newExpense.cost" name="cost"> </ion-input>
       </ion-item>
 
+      <ion-item>
+          <ion-label position="floating">Date</ion-label>
+          <ion-datetime displayFormat="DD/MM/YYYY" min="1994-03-14" max="2060-12-09" [(ngModel)]="newExpense.date"name="date"></ion-datetime>
+        </ion-item>
+
       <ion-button expand="full" type="submit" [disabled]="inputCheck()">Submit</ion-button>
     </ion-list>
 
