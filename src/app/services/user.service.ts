@@ -9,17 +9,18 @@ export class UserService {
   public signedIn = false;
 
   constructor( private router: Router ) {
-    firebase.auth().onAuthStateChanged((user: firebase.User) => {
+    // firebase.auth().onAuthStateChanged((user: firebase.User) => {
       
-      if (this.signedIn) {
-        console.log('User is logged in');
-        this.signedIn=true;
-        this.router.navigateByUrl('/list');
-      } else {
-        console.log('User is not logged in');
-        this.router.navigateByUrl('/login');
-      }
-    });
+    //   if (!this.signedIn) {
+    //     console.log('User is logged in');
+    //     this.signedIn=true;
+    //     this.router.navigateByUrl('/list');
+    //   } else {
+    //     this.signedIn=false;
+    //     console.log('User is not logged in');
+    //     this.router.navigateByUrl('/login');
+    //   }
+    // });
   }
 
   signup(email, password) {

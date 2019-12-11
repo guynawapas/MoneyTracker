@@ -16,6 +16,7 @@ export class LoginPage implements OnInit {
                public router: Router ) { }
 
   ngOnInit() {
+    this.account = { email: '', password: '' };
   }
 
   doLogin() {

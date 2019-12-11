@@ -21,15 +21,22 @@ export class ExpenseService {
     expense['user'] = firebase.auth().currentUser.email;
     return firebase.database().ref('expenses/').push(expense);
   }
+
+  getExpense() {
+    // console.log(firebase.auth().currentUser.email)
+    if(firebase.auth() === null) {
+      return [];
+    }
+    return this.expenses.filter(data => data.user === firebase.auth().currentUser.email);
+  }
 }
 
 export const snapshotToArray = snapshot => {
   let returnArr = [];
-
   snapshot.forEach(childSnapshot => {
       let item = childSnapshot.val();
       item.key = childSnapshot.key;
       returnArr.push(item);
-  });
+  })
   return returnArr;
 };

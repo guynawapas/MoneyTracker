@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import * as firebase from 'firebase/app';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,8 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private menu: MenuController
+    private menu: MenuController,
+    public router: Router
   ) {
     this.initializeApp();
   }
@@ -40,6 +42,9 @@ export class AppComponent {
 
   logout() {
     firebase.auth().signOut();
+    
     this.menu.close();
+    
+    this.router.navigateByUrl('/login');
   }
 }

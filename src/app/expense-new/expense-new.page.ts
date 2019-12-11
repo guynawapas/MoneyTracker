@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./expense-new.page.scss'],
 })
 export class ExpenseNewPage implements OnInit {
-  newExpense = { type: '', description: '', cost: 0 };
+  newExpense = { type: '', description: '', cost: '' };
 
   constructor( private expenseService: ExpenseService,
                private router: Router ) { }

@@ -13,7 +13,16 @@
 </ion-header>
 
 <ion-content>
-  <ion-card *ngFor="let item of expenseService.expenses" (click)="onSelect(item)">
+  <ion-card>
+      <ion-card-header>
+          Doughnut Chart
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #doughnutCanvas></canvas>
+      </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngFor="let item of expenseService.getExpense()" (click)="onSelect(item)">
     <ion-card-header>
       <ion-icon name="cash" slot="start"></ion-icon>
       ${{ item.cost }} - {{ item.user }}

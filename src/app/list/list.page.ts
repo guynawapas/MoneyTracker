@@ -11,12 +11,16 @@ import { ExpenseService } from '../services/expense.service';
 export class ListPage implements OnInit {
   // items = this.expenseService.expenses;
 
+  
+
   constructor( private userService: UserService,
                private expenseService: ExpenseService,
                private router: Router ) {
   }
+  
 
   ngOnInit() {
+   
   }
 
   onSelect(expense) {
