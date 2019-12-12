@@ -1,11 +1,7 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>New Expense</ion-title>
-    <ion-buttons >
-      <ion-button routerLink="/" routerDirection="back">
-        Back
-      </ion-button>
-    </ion-buttons>
+  <ion-toolbar color='dark'>
+    <ion-title  >New Expense</ion-title>
+    
   </ion-toolbar>
 </ion-header>
 
@@ -13,8 +9,8 @@
   <form (submit)="addExpense()" class="form-div">
     <ion-list>
       <ion-item>
-        <ion-label position="stacked">Type</ion-label>
-        <ion-select [(ngModel)]="newExpense.type" interface="action-sheet" name="type" >
+        <ion-label color='light' position="stacked">Type</ion-label>
+        <ion-select style="color: white;" [(ngModel)]="newExpense.type" interface="action-sheet" name="type"placeholder='Select type of expense' >
           <ion-select-option value="meal">Meal</ion-select-option>
           <ion-select-option value="lodging">Lodging</ion-select-option>
           <ion-select-option value="travel">Travel</ion-select-option>
@@ -24,23 +20,28 @@
       </ion-item>
 
       <ion-item>
-        <ion-label position="stacked">Description</ion-label>
-        <ion-input type="text" [(ngModel)]="newExpense.description" name="description"> </ion-input>
+        <ion-label color='light'position="stacked">Description</ion-label>
+        <ion-input color='light'type="text" [(ngModel)]="newExpense.description" name="description"placeholder='Enter Description here'> </ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label position="stacked">Cost</ion-label>
-        <ion-input type="number" [(ngModel)]="newExpense.cost" name="cost"> </ion-input>
+        <ion-label color='light'position="stacked">Cost</ion-label>
+        <ion-input color='light'type="number" [(ngModel)]="newExpense.cost" name="cost" placeholder='Enter Expense here'> </ion-input>
       </ion-item>
 
       <ion-item>
-          <ion-label position="floating">Date</ion-label>
-          <ion-datetime displayFormat="DD/MM/YYYY" min="1994-03-14" max="2060-12-09" [(ngModel)]="newExpense.date"name="date"></ion-datetime>
+          <ion-label color='light'position="floating">Date</ion-label>
+          <ion-datetime style="color: white;" displayFormat="DD/MM/YYYY" min="1994-03-14" max="2060-12-09" [(ngModel)]="newExpense.date"name="date"></ion-datetime>
         </ion-item>
 
       <ion-button expand="full" type="submit" [disabled]="inputCheck()">Submit</ion-button>
     </ion-list>
 
   </form>
+  
+      <ion-button expand = 'block' fill='clear' routerLink="/list" routerDirection="back">
+        <ion-icon name='arrow-back'></ion-icon>
+      </ion-button>
+    
 
 </ion-content>

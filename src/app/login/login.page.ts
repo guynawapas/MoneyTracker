@@ -29,7 +29,7 @@ export class LoginPage implements OnInit {
         })
         .catch(error => {
           console.log(error);
-          this.presentToast(error.message);
+          this.presentToast("Please make sure you are using existing account and correct password to login.");
         });
     } else {
       this.presentToast("Email & password are required.");

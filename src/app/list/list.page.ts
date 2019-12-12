@@ -4,6 +4,7 @@ import { UserService } from '../services/user.service';
 import { ExpenseService } from '../services/expense.service';
 import { Chart } from "chart.js";
 import * as firebase from 'firebase';
+
 @Component({
   selector: 'app-list',
   templateUrl: 'list.page.html',
@@ -11,10 +12,10 @@ import * as firebase from 'firebase';
 })
 export class ListPage implements OnInit {
   // items = this.expenseService.expenses;
-  @ViewChild("doughnutCanvas") doughnutCanvas: ElementRef;
+  @ViewChild("doughnutCanvas",{static:false}) doughnutCanvas: ElementRef;
   private doughnutChart: Chart;
   
-  
+  expenseSum=0;
   travelSum=0;
   mealSum=0;
   lodgingSum=0;
@@ -32,14 +33,14 @@ export class ListPage implements OnInit {
   
 
   ngOnInit() {
-    
-   //this.plot();
+
+   this.plot();
   }
 
   async plot() {
-    await this.expenseService.reloadData();
+    const data = await this.expenseService.reloadData();
     console.log("list");
-    console.log(this.expenseService.expenses);
+    console.log(data);
     this.expenseTravel = this.expenseService.getExpense().filter(data => data.type === 'travel');
     this.expenseMeal = this.expenseService.getExpense().filter(data => data.type === 'meal');
     this.expenseLodging = this.expenseService.getExpense().filter(data => data.type === 'lodging');
@@ -49,14 +50,15 @@ export class ListPage implements OnInit {
     console.log(this.expenseTravel);
     console.log("expenseMeal");
     console.log(this.expenseMeal);
+
     for(let money of this.expenseTravel){
       this.travelSum += money.cost;
-      console.log(money.cost);
-      console.log('travel'+this.travelSum);
     }
+    console.log('travel: '+this.travelSum);
     for(let money of this.expenseMeal){
       this.mealSum += money.cost;
     }
+    console.log("meal:"+this.mealSum);
     for(let money of this.expenseLodging){
       this.lodgingSum += money.cost;
     }
@@ -66,14 +68,14 @@ export class ListPage implements OnInit {
     for(let money of this.expenseMisc){
       this.miscSum += money.cost;
     }
-    
+    this.expenseSum=this.travelSum+this.mealSum+this.lodgingSum+this.parkingSum+this.miscSum;
 
 
 
     this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
       type: "doughnut",
       data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        labels: ["Travel", "Meal", "Lodging","Parking", "Misc" ],
         datasets: [
           {
             label: "# of Votes",
@@ -83,10 +85,10 @@ export class ListPage implements OnInit {
               "rgba(54, 162, 235, 0.2)",
               "rgba(255, 206, 86, 0.2)",
               "rgba(75, 192, 192, 0.2)",
-              "rgba(153, 102, 255, 0.2)",
-              "rgba(255, 159, 64, 0.2)"
+              "rgba(153, 102, 255, 0.2)"
+              
             ],
-            hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#FF6384", "#36A2EB", "#FFCE56"]
+            hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4bc0c0", "#36A2EB"]
           }
         ]
       }

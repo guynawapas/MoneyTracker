@@ -23,20 +23,26 @@ export class ExpenseService {
   }
 
   async reloadData() {
-    await this.ref.on('value', resp => {
-      this.expenses = [];
-      this.expenses = snapshotToArray(resp);
+    let data = await firebase.database().ref('expenses/').once('value').then( (snapshot) => {
+      console.log(snapshot.val())
+      this.expenses = snapshotToArray(snapshot);
       console.log(this.expenses);
+    });
+    return await this.ref.on('value', resp => {
+      return resp;
     });
   }
 
   getExpense() {
-    
     // console.log(firebase.auth().currentUser.email)
     if(firebase.auth() === null) {
       return [];
     }
     return this.expenses.filter(data => data.user === firebase.auth().currentUser.email);
+  }
+  getTravel(){
+    return this.getExpense().filter(data => data.type === 'travel');
+
   }
 }
 

@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-title>Expense Detail</ion-title>
     <ion-buttons >
-      <ion-button routerLink="/" routerDirection="back">
+      <ion-button routerLink="/list" routerDirection="back">
         Back
       </ion-button>
     </ion-buttons>
@@ -14,5 +14,5 @@
   <ion-item color='red'>Expense: {{ expense.cost }}</ion-item>
   <ion-item color='yellowish'>Description: {{ expense.description }}</ion-item>
   <ion-item color ='purple'>Type: {{ expense.type }}</ion-item>
-  <ion-item color ='medium'>Date: {{expense.date}}</ion-item>
+  <ion-item color ='medium'>Date: {{formatDate(expense.date)}}</ion-item>
 </ion-content>
